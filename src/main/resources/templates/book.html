@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <title>Book Detailes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    
+    
+    <div th:insert = "components/booksearch :: search-panel"></div>
     <div class="card mb-3" style="max-width: 1000px;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -15,6 +19,48 @@
               <p class="card-text display-6" th:text="${book.authorNames}"></p>
               <p class="card-text" th:text="${book.description}">Book Description</p>
               <p class="card-text" >Published Date: <small class="text-muted" th:text="${book.publishedDate}"></small></p>
+            
+              <form th:if="${login}" th:attr="action=@{/addUserBook}" method = "POST">
+                <input type="hidden"
+	                th:name="${_csrf.parameterName}"
+	                th:value="${_csrf.token}"/>
+                <input type = "hidden"
+                    name="bookId"
+                    th:value="${book.id}"/>
+                
+                <div class="mb-3">
+                  <label for="startDate" class="form-label">Start date</label>
+                  <input type="date" class="form-control" 
+                    id="startDate" name="startDate" th:value = "${userBooks.startDate}">
+                </div>
+                
+                <div class="mb-3">
+                  <label for="endDate" class="form-label">Completed date</label>
+                  <input type="date" class="form-control" 
+                    id="endDate" name="endDate" th:value = "${userBooks.endDate}">
+                </div>
+                <div class="mb-3">
+                  <label for="readingStatus" class="form-label">Status</label>
+                  <select id = "readingStatus" class="form-select" aria-label="Reading Status" th:value = "$userBooks.readingStatus">
+                    <option selected>Open this select menu</option>
+                    <option value="reading">Currently Reading</option>
+                    <option value="finished">Finished</option>
+                    <option value="dnf">Did Not Finish</option>
+                  </select>
+                </div> 
+                <div class="mb-3">
+                  <label for="rating" class="form-label">Rating</label>
+                  <select id = "rating" class="form-select" aria-label="rating">
+                    <option selected>Open this select menu</option>
+                    <option value="1">&#10026;</option>
+                    <option value="2">&#10026;&#10026;</option>
+                    <option value="3">&#10026;&#10026;&#10026;</option>
+                    <option value="4">&#10026;&#10026;&#10026;&#10026;</option>
+                    <option value="5">&#10026;&#10026;&#10026;&#10026;&#10026;</option>
+                  </select>
+                 </div> 
+                <button type = "submit" class = "btn btn-primary">Submit</button>
+              </form>
             </div>
           </div>
         </div>
