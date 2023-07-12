@@ -5,8 +5,6 @@
     <title>Book Detailes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     
-    
-    
     <div th:insert = "components/booksearch :: search-panel"></div>
     <div class="card mb-3" style="max-width: 1000px;">
         <div class="row g-0">
@@ -41,17 +39,17 @@
                 </div>
                 <div class="mb-3">
                   <label for="readingStatus" class="form-label">Status</label>
-                  <select id = "readingStatus" class="form-select" aria-label="Reading Status" th:value = "$userBooks.readingStatus">
-                    <option selected>Open this select menu</option>
-                    <option value="reading">Currently Reading</option>
-                    <option value="finished">Finished</option>
-                    <option value="dnf">Did Not Finish</option>
+                  <select id = "readingStatus" class="form-select" aria-label="readingStatus" th:field = "${userBooks.readingStatus}">
+                    <option selected value="3">Status</option>
+                    <option value="0-reading">Currently Reading</option>
+                    <option value="1-finished">Finished</option>
+                    <option value="2-dnf">Did Not Finish</option>
                   </select>
                 </div> 
                 <div class="mb-3">
                   <label for="rating" class="form-label">Rating</label>
-                  <select id = "rating" class="form-select" aria-label="rating">
-                    <option selected>Open this select menu</option>
+                  <select id = "rating" class="form-select" aria-label="rating" th:field = "${userBooks.rating}">
+                    <option selected value="0">Select Rating</option>
                     <option value="1">&#10026;</option>
                     <option value="2">&#10026;&#10026;</option>
                     <option value="3">&#10026;&#10026;&#10026;</option>
