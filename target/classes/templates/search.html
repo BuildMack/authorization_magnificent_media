@@ -7,13 +7,18 @@
     <title>Magnificent Reads</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 20px">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Magnificent Media</a>
+        </div>
+    </nav>
     <div th:insert = "components/booksearch :: search-panel"></div>
     <div class = "card-group"> 
         <div class="card" style = "flex: 0 0 20%; margin: 35px" th:each = "result: ${searchResult}">
             <img th:src="${result.cover_i}" class="card-img-top" alt="..." >
             <div class="card-body">
             <h5 class="card-title" th:text = "${result.title}">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text"th:text = "${result.description}"></p>
             <a th:href = "@{'/books/' + ${result.key}}" class="btn btn-primary">View Book</a>
             </div>
         </div>
